@@ -1,0 +1,73 @@
+# Build Folders
+bin/
+obj/
+
+# User-specific Files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated Files
+*.log
+*.tlog
+*.pdb
+*.opendb
+*.scc
+
+# Visual Studio Specific
+.vscode/
+.vs/
+.vscode/
+.vscode/
+
+# Windows Image Files
+Thumbs.db
+ehthumbs.db
+
+# Folder Configs
+desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows shortcuts
+*.lnk
+
+# Others
+*.DS_Store
+*.directory
+
+# JetBrains Rider
+.idea/
+.idea/.name
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/shelf
+.idea/vcs.xml
+.idea/AssetCleanUp.xml
+.idea/workspace.xml
+*.iml
+modules.xml
+
+# Rider projects
+.idea/
+.idea/.name
+.idea/misc.xml
+.idea/vcs.xml
+.idea/workspace.xml
+out/
+*.ipr
+*.iws
+modules.xml
+.shelf/
+
+# Rider files
+*_Libraries_ImSettings.oss
+### User-specific ignore files ###
+.idea/
+.idea/.name
+.idea/vcs.xml
+.idea/workspace.xml
