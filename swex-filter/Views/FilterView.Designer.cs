@@ -29,6 +29,18 @@ namespace RuneManager.Views
             this.btnDeactivateAllFilters = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilters)).BeginInit();
             this.SuspendLayout();
+
+            var runeSetValues = new[] { new { Value = (RuneSet?)null, Display = "" } }
+                        .Concat(Enum.GetValues(typeof(RuneSet)).Cast<RuneSet>()
+                        .Select(e => new { Value = (RuneSet?)e, Display = RuneSetInfoAttribute.GetInfo(e).DisplayName })).ToList();
+
+            var runeRarityValues = new[] { new { Value = (RuneRarity?)null, Display = "" } }
+                        .Concat(Enum.GetValues(typeof(RuneRarity)).Cast<RuneRarity>()
+                        .Select(e => new { Value = (RuneRarity?)e, Display = RuneRarityInfoAttribute.GetInfo(e).DisplayName })).ToList();
+
+            var runeTypeStatValues = new[] { new { Value = (RuneTypeStat?)null, Display = "" } }
+                        .Concat(Enum.GetValues(typeof(RuneTypeStat)).Cast<RuneTypeStat>()
+                        .Select(e => new { Value = (RuneTypeStat?)e, Display = RuneTypeStatInfoAttribute.GetInfo(e).DisplayName })).ToList();
             // 
             // dataGridViewFilters
             // 
@@ -48,11 +60,14 @@ namespace RuneManager.Views
                     HeaderText = "Name",
                     Frozen = true
                 },
-                new System.Windows.Forms.DataGridViewComboBoxColumn
+                new DataGridViewComboBoxColumn
                 {
                     DataPropertyName = "Set",
                     HeaderText = "Set",
-                    DataSource = new object[] { "" }.Concat(Enum.GetValues(typeof(RuneSet)).Cast<object>()).ToArray()
+                    Name = "SetColumn",
+                    DataSource = runeSetValues,
+                    DisplayMember = "Display",
+                    ValueMember = "Value"
                 },
                 new System.Windows.Forms.DataGridViewComboBoxColumn
                 {
@@ -70,13 +85,17 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "Rarity",
                     HeaderText = "Rarity",
-                    DataSource = new object[] { "" }.Concat(Enum.GetValues(typeof(RuneRarity)).Cast<object>()).ToArray()
+                    DataSource = runeRarityValues,
+                    DisplayMember = "Display",
+                    ValueMember = "Value"
                 },
                 new System.Windows.Forms.DataGridViewComboBoxColumn
                 {
                     DataPropertyName = "MainStat",
                     HeaderText = "Main Stat",
-                    DataSource = new object[] { "" }.Concat(Enum.GetValues(typeof(RuneTypeStat)).Cast<object>()).ToArray()
+                    DataSource = runeTypeStatValues,
+                    DisplayMember = "Display",
+                    ValueMember = "Value"
                 },
                 new System.Windows.Forms.DataGridViewTextBoxColumn
                 {
@@ -92,7 +111,9 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "InnateStat",
                     HeaderText = "Innate Stat",
-                    DataSource = new object[] { "" }.Concat(Enum.GetValues(typeof(RuneTypeStat)).Cast<object>()).ToArray()
+                    DataSource = runeTypeStatValues,
+                    DisplayMember = "Display",
+                    ValueMember = "Value"
                 },
                 new System.Windows.Forms.DataGridViewTextBoxColumn
                 {
@@ -108,7 +129,9 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat1",
                     HeaderText = "Sub Stat 1",
-                    DataSource = new object[] { "" }.Concat(Enum.GetValues(typeof(RuneTypeStat)).Cast<object>()).ToArray()
+                    DataSource = runeTypeStatValues,
+                    DisplayMember = "Display",
+                    ValueMember = "Value"
                 },
                 new System.Windows.Forms.DataGridViewTextBoxColumn
                 {
@@ -124,7 +147,9 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat2",
                     HeaderText = "Sub Stat 2",
-                    DataSource = new object[] { "" }.Concat(Enum.GetValues(typeof(RuneTypeStat)).Cast<object>()).ToArray()
+                    DataSource = runeTypeStatValues,
+                    DisplayMember = "Display",
+                    ValueMember = "Value"
                 },
                 new System.Windows.Forms.DataGridViewTextBoxColumn
                 {
@@ -140,7 +165,9 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat3",
                     HeaderText = "Sub Stat 3",
-                    DataSource = new object[] { "" }.Concat(Enum.GetValues(typeof(RuneTypeStat)).Cast<object>()).ToArray()
+                    DataSource = runeTypeStatValues,
+                    DisplayMember = "Display",
+                    ValueMember = "Value"
                 },
                 new System.Windows.Forms.DataGridViewTextBoxColumn
                 {
@@ -156,7 +183,9 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat4",
                     HeaderText = "Sub Stat 4",
-                    DataSource = new object[] { "" }.Concat(Enum.GetValues(typeof(RuneTypeStat)).Cast<object>()).ToArray()
+                    DataSource = runeTypeStatValues,
+                    DisplayMember = "Display",
+                    ValueMember = "Value"
                 },
                 new System.Windows.Forms.DataGridViewTextBoxColumn
                 {

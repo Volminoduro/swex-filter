@@ -150,7 +150,7 @@ namespace RuneManager.Data
                 MainStatValue = 63,
                 SubStat1 = RuneTypeStat.HPPercentage,
                 SubStat1Value = 20,
-                SubStat2 = RuneTypeStat.CRI_Rate,
+                SubStat2 = RuneTypeStat.CRIRate,
                 SubStat2Value = 15,
                 SubStat3 = RuneTypeStat.DEFPercentage,
                 SubStat3Value = 12,
@@ -167,7 +167,7 @@ namespace RuneManager.Data
                 Stars = RuneStars.Five,
                 Rarity = RuneRarity.Hero,
                 Level = 12,
-                MainStat = RuneTypeStat.CRI_Rate,
+                MainStat = RuneTypeStat.CRIRate,
                 MainStatValue = 80,
                 SubStat1 = RuneTypeStat.ATKPercentage,
                 SubStat1Value = 15,
@@ -192,11 +192,11 @@ namespace RuneManager.Data
                 MainStatValue = 42,
                 SubStat1 = RuneTypeStat.ATKPercentage,
                 SubStat1Value = 15,
-                SubStat2 = RuneTypeStat.CRI_Rate,
+                SubStat2 = RuneTypeStat.CRIRate,
                 SubStat2Value = 12,
                 SubStat3 = RuneTypeStat.HPPercentage,
                 SubStat3Value = 8,
-                SubStat4 = RuneTypeStat.DEF,
+                SubStat4 = RuneTypeStat.DEFFlat,
                 SubStat4Value = 10,
                 Efficiency = 92
             });
@@ -228,7 +228,7 @@ namespace RuneManager.Data
             {
                 Name = "Swift Runes with CRI Rate",
                 Set = RuneSet.Swift,
-                SubStat1 = RuneTypeStat.CRI_Rate,
+                SubStat1 = RuneTypeStat.CRIRate,
                 MinSubStat1Value = 10,
                 IsActive = true
             });
