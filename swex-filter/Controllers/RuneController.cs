@@ -1,8 +1,8 @@
-﻿using RuneManager.Data;
-using RuneManager.Models;
-using RuneManager.Utils;
+﻿using SwexFilter.Data;
+using SwexFilter.Models;
+using SwexFilter.Utils;
 
-namespace RuneManager.Controllers
+namespace SwexFilter.Controllers
 {
     public class RuneController
     {

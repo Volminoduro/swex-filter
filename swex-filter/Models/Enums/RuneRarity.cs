@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace MyApp.Models.Enums
+namespace SwexFilter.Models.Enums
 {
     public enum RuneRarity
     {

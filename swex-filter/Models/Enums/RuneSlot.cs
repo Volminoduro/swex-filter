@@ -1,4 +1,4 @@
-﻿namespace MyApp.Models.Enums
+﻿namespace SwexFilter.Models.Enums
 {
     public enum RuneSlot
     {

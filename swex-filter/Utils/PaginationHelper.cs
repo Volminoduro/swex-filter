@@ -1,4 +1,4 @@
-﻿namespace RuneManager.Utils
+﻿namespace SwexFilter.Utils
 {
     public static class PaginationHelper<T>
     {

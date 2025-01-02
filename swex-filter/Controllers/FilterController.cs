@@ -1,8 +1,8 @@
-﻿using MyApp.Models.Enums;
-using RuneManager.Data;
-using RuneManager.Models;
+﻿using SwexFilter.Models.Enums;
+using SwexFilter.Data;
+using SwexFilter.Models;
 
-namespace RuneManager.Controllers
+namespace SwexFilter.Controllers
 {
     public class FilterController
     {

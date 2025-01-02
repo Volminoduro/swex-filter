@@ -1,8 +1,8 @@
-﻿using RuneManager.Controllers;
-using RuneManager.Data;
-using RuneManager.Models;
+﻿using SwexFilter.Controllers;
+using SwexFilter.Data;
+using SwexFilter.Models;
 
-namespace RuneManager.Views
+namespace SwexFilter.Views
 {
     public partial class RuneView : Form
     {

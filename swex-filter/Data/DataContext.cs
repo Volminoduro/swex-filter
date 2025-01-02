@@ -1,8 +1,8 @@
-﻿using MyApp.Models.Enums;
+using SwexFilter.Models.Enums;
 using Newtonsoft.Json;
-using RuneManager.Models;
+using SwexFilter.Models;
 
-namespace RuneManager.Data
+namespace SwexFilter.Data
 {
     public class DataContext : IDataContext
     {

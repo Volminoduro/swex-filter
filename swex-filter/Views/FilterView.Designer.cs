@@ -1,6 +1,6 @@
-﻿using MyApp.Models.Enums;
+﻿using SwexFilter.Models.Enums;
 
-namespace RuneManager.Views
+namespace SwexFilter.Views
 {
     partial class FilterView
     {

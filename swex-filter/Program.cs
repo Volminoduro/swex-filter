@@ -1,8 +1,8 @@
-using RuneManager.Controllers;
-using RuneManager.Data;
-using RuneManager.Views;
+using SwexFilter.Controllers;
+using SwexFilter.Data;
+using SwexFilter.Views;
 
-namespace RuneManager
+namespace SwexFilter
 {
     static class Program
     {
