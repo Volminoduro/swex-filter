@@ -44,7 +44,6 @@ namespace SwexFilter.Data
                 existingRune.SubStat3Value = rune.SubStat3Value;
                 existingRune.SubStat4 = rune.SubStat4;
                 existingRune.SubStat4Value = rune.SubStat4Value;
-                existingRune.Efficiency = rune.Efficiency;
                 SaveData();
             }
         }
@@ -136,7 +135,7 @@ namespace SwexFilter.Data
 
         private void AddSampleRunes()
         {
-            if (Runes.Any()) return; // Assure qu'on n'ajoute les runes exemples que si la liste est vide
+            if (Runes.Any()) return;
 
             Runes.Add(new SWEXRune
             {
@@ -155,8 +154,7 @@ namespace SwexFilter.Data
                 SubStat3 = RuneTypeStat.DEFPercentage,
                 SubStat3Value = 12,
                 SubStat4 = RuneTypeStat.SPD,
-                SubStat4Value = 8,
-                Efficiency = 95
+                SubStat4Value = 8
             });
 
             Runes.Add(new SWEXRune
@@ -176,8 +174,7 @@ namespace SwexFilter.Data
                 SubStat3 = RuneTypeStat.DEFPercentage,
                 SubStat3Value = 9,
                 SubStat4 = RuneTypeStat.Accuracy,
-                SubStat4Value = 10,
-                Efficiency = 90
+                SubStat4Value = 10
             });
 
             Runes.Add(new SWEXRune
@@ -197,16 +194,15 @@ namespace SwexFilter.Data
                 SubStat3 = RuneTypeStat.HPPercentage,
                 SubStat3Value = 8,
                 SubStat4 = RuneTypeStat.DEFFlat,
-                SubStat4Value = 10,
-                Efficiency = 92
+                SubStat4Value = 10
             });
 
-            SaveData(); // Sauvegarde les runes exemples dans le fichier JSON
+            SaveData();
         }
 
         private void AddSampleFilters()
         {
-            if (Filters.Any()) return; // Assure qu'on n'ajoute les filtres exemples que si la liste est vide
+            if (Filters.Any()) return;
 
             Filters.Add(new Filter
             {
@@ -233,7 +229,7 @@ namespace SwexFilter.Data
                 IsActive = true
             });
 
-            SaveData(); // Sauvegarde les filtres exemples dans le fichier JSON
+            SaveData();
         }
 
     }

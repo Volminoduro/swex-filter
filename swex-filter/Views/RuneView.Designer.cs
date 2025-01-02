@@ -171,7 +171,15 @@ namespace SwexFilter.Views
                 {
                     DataPropertyName = "SubStat4Value",
                     HeaderText = "Sub Stat 4 Value"
+                },
+                new System.Windows.Forms.DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "Score",
+                    HeaderText = "Score",
+                    Name = "ScoreColumn",
+                    ReadOnly = true
                 }
+
             });
             this.dataGridViewRunes.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewRunes.Name = "dataGridViewRunes";
