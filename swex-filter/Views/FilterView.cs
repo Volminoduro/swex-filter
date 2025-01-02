@@ -151,11 +151,40 @@ namespace RuneManager.Views
         }
         private void dataGridViewFilters_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (dataGridViewFilters.CurrentCell.ColumnIndex == dataGridViewFilters.Columns["IsActive"].Index)
+            List<int> indexes = new List<int>();
+            indexes.Add(dataGridViewFilters.Columns["IsActive"].Index);
+            indexes.Add(dataGridViewFilters.Columns["SetColumn"].Index);
+            indexes.Add(dataGridViewFilters.Columns["SlotColumn"].Index);
+            indexes.Add(dataGridViewFilters.Columns["StarsColumn"].Index);
+            indexes.Add(dataGridViewFilters.Columns["RarityColumn"].Index);
+            indexes.Add(dataGridViewFilters.Columns["MainStatColumn"].Index);
+            indexes.Add(dataGridViewFilters.Columns["InnateStatColumn"].Index);
+            indexes.Add(dataGridViewFilters.Columns["SubStat1Column"].Index);
+            indexes.Add(dataGridViewFilters.Columns["SubStat2Column"].Index);
+            indexes.Add(dataGridViewFilters.Columns["SubStat3Column"].Index);
+            indexes.Add(dataGridViewFilters.Columns["SubStat4Column"].Index);
+            if (indexes.Contains(dataGridViewFilters.CurrentCell.ColumnIndex))
             {
                 if (dataGridViewFilters.IsCurrentCellDirty)
                 {
                     dataGridViewFilters.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+        }
+
+        private void DataGridViewFilters_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                if (dataGridViewFilters.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
+                {
+                    dataGridViewFilters.BeginEdit(true);
+
+                    ComboBox comboBox = dataGridViewFilters.EditingControl as ComboBox;
+                    if (comboBox != null)
+                    {
+                        comboBox.DroppedDown = true;
+                    }
                 }
             }
         }

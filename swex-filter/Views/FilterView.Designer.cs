@@ -73,18 +73,21 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "Slot",
                     HeaderText = "Slot",
+                    Name = "SlotColumn",
                     DataSource = new object[] { "" }.Concat(Enum.GetValues(typeof(RuneSlot)).Cast<object>()).ToArray()
                 },
                 new System.Windows.Forms.DataGridViewComboBoxColumn
                 {
                     DataPropertyName = "Stars",
                     HeaderText = "Stars",
+                    Name = "StarsColumn",
                     DataSource = new object[] { "" }.Concat(Enum.GetValues(typeof(RuneStars)).Cast<object>()).ToArray()
                 },
                 new System.Windows.Forms.DataGridViewComboBoxColumn
                 {
                     DataPropertyName = "Rarity",
                     HeaderText = "Rarity",
+                    Name = "RarityColumn",
                     DataSource = runeRarityValues,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -93,6 +96,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "MainStat",
                     HeaderText = "Main Stat",
+                    Name = "MainStatColumn",
                     DataSource = runeTypeStatValues,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -111,6 +115,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "InnateStat",
                     HeaderText = "Innate Stat",
+                    Name = "InnateStatColumn",
                     DataSource = runeTypeStatValues,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -129,6 +134,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat1",
                     HeaderText = "Sub Stat 1",
+                    Name = "SubStat1Column",
                     DataSource = runeTypeStatValues,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -147,6 +153,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat2",
                     HeaderText = "Sub Stat 2",
+                    Name = "SubStat2Column",
                     DataSource = runeTypeStatValues,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -165,6 +172,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat3",
                     HeaderText = "Sub Stat 3",
+                    Name = "SubStat3Column",
                     DataSource = runeTypeStatValues,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -183,6 +191,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat4",
                     HeaderText = "Sub Stat 4",
+                    Name = "SubStat4Column",
                     DataSource = runeTypeStatValues,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -202,7 +211,8 @@ namespace RuneManager.Views
             this.dataGridViewFilters.Name = "dataGridViewFilters";
             this.dataGridViewFilters.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewFilters.Size = new System.Drawing.Size(1100, 368);
-            this.dataGridViewFilters.TabIndex = 0;            
+            this.dataGridViewFilters.TabIndex = 0;
+            this.dataGridViewFilters.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewFilters_CellClick);
             this.dataGridViewFilters.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFilters_CellValueChanged);
             this.dataGridViewFilters.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridViewFilters_CurrentCellDirtyStateChanged);
             // 
