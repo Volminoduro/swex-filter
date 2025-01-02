@@ -44,6 +44,45 @@ namespace RuneManager.Views
             }
         }
 
+        private void dataGridViewRunes_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            List<int> indexes = new List<int>();
+            indexes.Add(dataGridViewRunes.Columns["SetColumn"].Index);
+            indexes.Add(dataGridViewRunes.Columns["SlotColumn"].Index);
+            indexes.Add(dataGridViewRunes.Columns["StarsColumn"].Index);
+            indexes.Add(dataGridViewRunes.Columns["RarityColumn"].Index);
+            indexes.Add(dataGridViewRunes.Columns["MainStatColumn"].Index);
+            indexes.Add(dataGridViewRunes.Columns["InnateStatColumn"].Index);
+            indexes.Add(dataGridViewRunes.Columns["SubStat1Column"].Index);
+            indexes.Add(dataGridViewRunes.Columns["SubStat2Column"].Index);
+            indexes.Add(dataGridViewRunes.Columns["SubStat3Column"].Index);
+            indexes.Add(dataGridViewRunes.Columns["SubStat4Column"].Index);
+            if (indexes.Contains(dataGridViewRunes.CurrentCell.ColumnIndex))
+            {
+                if (dataGridViewRunes.IsCurrentCellDirty)
+                {
+                    dataGridViewRunes.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+        }
+
+        private void DataGridViewRunes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                if (dataGridViewRunes.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
+                {
+                    dataGridViewRunes.BeginEdit(true);
+
+                    ComboBox comboBox = dataGridViewRunes.EditingControl as ComboBox;
+                    if (comboBox != null)
+                    {
+                        comboBox.DroppedDown = true;
+                    }
+                }
+            }
+        }
+
         private void dataGridViewRunes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var rune = (SWEXRune)dataGridViewRunes.Rows[e.RowIndex].DataBoundItem;

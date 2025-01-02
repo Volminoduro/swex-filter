@@ -60,6 +60,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "Set",
                     HeaderText = "Set",
+                    Name = "SetColumn",
                     DataSource = runeSetValues,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -68,12 +69,14 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "Slot",
                     HeaderText = "Slot",
+                    Name = "SlotColumn",
                     DataSource = Enum.GetValues(typeof(RuneSlot))
                 },
                 new System.Windows.Forms.DataGridViewComboBoxColumn
                 {
                     DataPropertyName = "Rarity",
                     HeaderText = "Rarity",
+                    Name = "RarityColumn",
                     DataSource = runeRarityValues,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -82,12 +85,14 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "Stars",
                     HeaderText = "Stars",
+                    Name = "StarsColumn",
                     DataSource = Enum.GetValues(typeof(RuneStars))
                 },
                 new System.Windows.Forms.DataGridViewComboBoxColumn
                 {
                     DataPropertyName = "MainStat",
                     HeaderText = "Main Stat",
+                    Name = "MainStatColumn",
                     DataSource = runeTypeStatValuesForMainStat,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -101,6 +106,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "InnateStat",
                     HeaderText = "Innate Stat",
+                    Name = "InnateStatColumn",
                     DataSource = runeTypeStatValuesForInnateAndSubStat,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -114,6 +120,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat1",
                     HeaderText = "Sub Stat 1",
+                    Name = "SubStat1Column",
                     DataSource = runeTypeStatValuesForInnateAndSubStat,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -127,6 +134,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat2",
                     HeaderText = "Sub Stat 2",
+                    Name = "SubStat2Column",
                     DataSource = runeTypeStatValuesForInnateAndSubStat,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -140,6 +148,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat3",
                     HeaderText = "Sub Stat 3",
+                    Name = "SubStat3Column",
                     DataSource = runeTypeStatValuesForInnateAndSubStat,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -153,6 +162,7 @@ namespace RuneManager.Views
                 {
                     DataPropertyName = "SubStat4",
                     HeaderText = "Sub Stat 4",
+                    Name = "SubStat4Column",
                     DataSource = runeTypeStatValuesForInnateAndSubStat,
                     DisplayMember = "Display",
                     ValueMember = "Value"
@@ -167,6 +177,8 @@ namespace RuneManager.Views
             this.dataGridViewRunes.Name = "dataGridViewRunes";
             this.dataGridViewRunes.Size = new System.Drawing.Size(1000, 368);
             this.dataGridViewRunes.TabIndex = 0;
+            this.dataGridViewRunes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewRunes_CellClick);
+            this.dataGridViewRunes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridViewRunes_CurrentCellDirtyStateChanged);
             this.dataGridViewRunes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRunes_CellEndEdit);
             // 
             // btnImport
