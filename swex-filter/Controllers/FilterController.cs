@@ -44,6 +44,7 @@ namespace RuneManager.Controllers
             var filteredRunes = runes.Where(rune => activeFilters.All(filter =>
                 CheckSet(filter.Set, rune) &&
                 CheckSlot(filter.Slot, rune) &&
+                CheckStars(filter.Stars, rune) &&
                 CheckRarity(filter.Rarity, rune) &&
                 CheckMainStat(filter.MainStat, filter.MinMainStatValue, filter.MaxMainStatValue, rune) &&
                 CheckSubStat(filter.SubStat1, filter.MinSubStat1Value, filter.MaxSubStat1Value, rune) &&
@@ -54,6 +55,11 @@ namespace RuneManager.Controllers
             )).ToList();
 
             return filteredRunes;
+        }
+
+        private bool CheckStars(RuneStars? stars, SWEXRune rune)
+        {
+            return stars == null || stars.ToString() == "" || rune.Stars.ToString() == stars.ToString();
         }
 
         private bool CheckSet(RuneSet? set, SWEXRune rune)
