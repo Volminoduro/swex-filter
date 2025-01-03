@@ -30,3 +30,10 @@ jobs:
       with:
         name: swex-filter
         path: ./output/swex-filter/swex-filter.exe
+
+    - name: Publish to GitHub Packages
+      uses: actions/upload-to-github-packages@v1
+      with:
+        path: ./output
+        token: ${{ secrets.SWEX_FILTER_PACKAGES_TOKEN }}
+        registry-url: https://npm.pkg.github.com/
