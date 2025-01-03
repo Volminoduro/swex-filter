@@ -1,4 +1,4 @@
-﻿using SwexFilter.Controllers;
+using SwexFilter.Controllers;
 using SwexFilter.Models;
 
 namespace SwexFilter.Views
@@ -7,7 +7,7 @@ namespace SwexFilter.Views
     {
         private readonly FilterController _filterController;
         private readonly RuneView _runeView;
-        private Filter _copiedFilter;
+        private Filter? _copiedFilter;
 
         public FilterView(FilterController filterController, RuneView runeView)
         {
@@ -118,13 +118,9 @@ namespace SwexFilter.Views
                 filterName = $"{baseName} {counter}";
                 counter++;
             }
-
             // Create a new filter with the unique name
             var newFilter = new Filter { Name = filterName, IsActive = false };
-
-            // Add the new filter
             _filterController.AddFilter(newFilter);
-
             // Reload filters to display the new entry
             LoadFilters();
         }
@@ -209,27 +205,7 @@ namespace SwexFilter.Views
             {
                 var filter = (Filter)dataGridViewFilters.Rows[e.RowIndex].DataBoundItem;
                 _filterController.UpdateFilter(filter);
-                // Check if the filter name already exists
-                if (_filterController.GetFilters().Any(f => f.Name == filter.Name && f != filter))
-                {
-                    MessageBox.Show("A filter with this name already exists. Please choose another name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // Restore the old filter name
-                    dataGridViewFilters.CancelEdit();
-                }
-                else
-                {
-                    // Check for empty filter name
-                    if (string.IsNullOrWhiteSpace(filter.Name))
-                    {
-                        MessageBox.Show("Filter name cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        dataGridViewFilters.CancelEdit();
-                    }
-                    else
-                    {
-                        _filterController.UpdateFilter(filter);
-                        _runeView.LoadRunes();
-                    }
-                }
+                _runeView.LoadRunes();
             }
         }
 

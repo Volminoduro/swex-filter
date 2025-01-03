@@ -1,11 +1,11 @@
-﻿using SwexFilter.Models.Enums;
+using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Models
 {
     public class Filter
     {
         public bool IsActive { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public RuneSet? Set { get; set; }
         public RuneSlot? Slot { get; set; }
         public RuneRarity? Rarity { get; set; }
