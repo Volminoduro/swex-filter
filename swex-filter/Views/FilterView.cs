@@ -50,6 +50,7 @@ namespace SwexFilter.Views
                 {
                     Set = filter.Set,
                     Slot = filter.Slot,
+                    RelativeScore = filter.RelativeScore,
                     Rarity = filter.Rarity,
                     MainStat = filter.MainStat,
                     MinMainStatValue = filter.MinMainStatValue,

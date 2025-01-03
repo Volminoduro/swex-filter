@@ -41,5 +41,17 @@
         {
             return maxSubStatRollValues.TryGetValue(stat, out var value) ? value : 0;
         }
+
+        public static int GetScoreRollValue(RuneTypeStat stat, int value)
+        {
+            double totalrolls = Math.Round((double)value / GetMaxSubStatRollValue(stat), 2);
+            if (new List<RuneTypeStat> { RuneTypeStat.ATKFlat, RuneTypeStat.HPFlat, RuneTypeStat.DEFFlat }.Contains(stat))
+                totalrolls = totalrolls * 0.35;
+            // https://www.reddit.com/r/summonerswar/comments/1gfsixy/this_is_how_runeartifact_score_works_compared_to/
+            // One min flat stat roll = 2.52 score
+            // One min not-flat stat roll = 10 score
+            // One Max roll = 20 score
+            return (int)Math.Round(totalrolls * 20);
+        }
     }
 }

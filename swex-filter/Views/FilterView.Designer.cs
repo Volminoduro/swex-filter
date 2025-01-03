@@ -1,4 +1,4 @@
-﻿using SwexFilter.Models.Enums;
+using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Views
 {
@@ -58,6 +58,12 @@ namespace SwexFilter.Views
                 {
                     DataPropertyName = "Name",
                     HeaderText = "Name",
+                    Frozen = true
+                },
+                new System.Windows.Forms.DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "RelativeScore",
+                    HeaderText = "Relative Score",
                     Frozen = true
                 },
                 new DataGridViewComboBoxColumn

@@ -1,4 +1,4 @@
-using SwexFilter.Models.Enums;
+﻿using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Models
 {
@@ -6,10 +6,11 @@ namespace SwexFilter.Models
     {
         public bool IsActive { get; set; }
         public string? Name { get; set; }
+
+        public int? RelativeScore { get; set; }
         public RuneSet? Set { get; set; }
         public RuneSlot? Slot { get; set; }
         public RuneRarity? Rarity { get; set; }
-
         public RuneStars? Stars { get; set; }
         public int? MinLevel { get; set; }
         public int? MaxLevel { get; set; }

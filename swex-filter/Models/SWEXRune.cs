@@ -1,4 +1,4 @@
-using SwexFilter.Models.Enums;
+﻿using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Models
 {
@@ -29,21 +29,19 @@ namespace SwexFilter.Models
 
         private int CalculateScore()
         {
-
-            double totalrolls = 0;
+            int totalScore = 0;
             if (SubStat1 != null && SubStat1Value != null)
-                totalrolls += Math.Round((double)SubStat1Value / MaxStatValues.GetMaxSubStatRollValue((RuneTypeStat)SubStat1), 2);
+                totalScore += MaxStatValues.GetScoreRollValue(SubStat1.Value, SubStat1Value.Value);
             if (SubStat2 != null && SubStat2Value != null)
-                totalrolls += Math.Round((double)SubStat2Value / MaxStatValues.GetMaxSubStatRollValue((RuneTypeStat)SubStat2), 2);
+                totalScore += MaxStatValues.GetScoreRollValue(SubStat2.Value, SubStat2Value.Value);
             if (SubStat3 != null && SubStat3Value != null)
-                totalrolls += Math.Round((double)SubStat3Value / MaxStatValues.GetMaxSubStatRollValue((RuneTypeStat)SubStat3), 2);
+                totalScore += MaxStatValues.GetScoreRollValue(SubStat3.Value, SubStat3Value.Value);
             if (SubStat4 != null && SubStat4Value != null)
-                totalrolls += Math.Round((double)SubStat4Value / MaxStatValues.GetMaxSubStatRollValue((RuneTypeStat)SubStat4), 2);
+                totalScore += MaxStatValues.GetScoreRollValue(SubStat4.Value, SubStat4Value.Value);
             if (InnateStat != null && InnateStatValue != null)
-                totalrolls += Math.Round((double)InnateStatValue / MaxStatValues.GetMaxSubStatRollValue((RuneTypeStat)InnateStat), 2);
+                totalScore += MaxStatValues.GetScoreRollValue(InnateStat.Value, InnateStatValue.Value);
 
-            // One Max roll = 20 score
-            return (int)Math.Floor(totalrolls * 20);
+            return totalScore;
         }
     }
 }

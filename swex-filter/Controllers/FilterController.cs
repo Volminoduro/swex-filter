@@ -1,4 +1,4 @@
-using SwexFilter.Data;
+﻿using SwexFilter.Data;
 using SwexFilter.Models;
 using SwexFilter.Models.Enums;
 
@@ -44,6 +44,7 @@ namespace SwexFilter.Controllers
             var filteredRunes = runes.Where(rune => activeFilters.All(filter =>
                 CheckSet(filter.Set, rune) &&
                 CheckSlot(filter.Slot, rune) &&
+                CheckRelativeScore(filter.RelativeScore, new List<RuneTypeStat?> { filter.InnateStat, filter.SubStat1, filter.SubStat2, filter.SubStat3, filter.SubStat4 }, rune) &&
                 CheckStars(filter.Stars, rune) &&
                 CheckRarity(filter.Rarity, rune) &&
                 CheckMainStat(filter.MainStat, filter.MinMainStatValue, filter.MaxMainStatValue, rune) &&
@@ -55,6 +56,27 @@ namespace SwexFilter.Controllers
             )).ToList();
 
             return filteredRunes;
+        }
+
+        private bool CheckRelativeScore(int? relativeScore, List<RuneTypeStat?> filterTypeStats, SWEXRune rune)
+        {
+            if (relativeScore == null)
+            {
+                return true;
+            }
+            int runeRelativeScore = 0;
+            if (rune.InnateStat.HasValue && rune.InnateStatValue.HasValue && filterTypeStats.Contains(rune.InnateStat))
+                runeRelativeScore += MaxStatValues.GetScoreRollValue(rune.InnateStat.Value, rune.InnateStatValue.Value);
+            if (rune.SubStat1.HasValue && rune.SubStat1Value.HasValue && filterTypeStats.Contains(rune.SubStat1))
+                runeRelativeScore += MaxStatValues.GetScoreRollValue(rune.SubStat1.Value, rune.SubStat1Value.Value);
+            if (rune.SubStat2.HasValue && rune.SubStat2Value.HasValue && filterTypeStats.Contains(rune.SubStat2))
+                runeRelativeScore += MaxStatValues.GetScoreRollValue(rune.SubStat2.Value, rune.SubStat2Value.Value);
+            if (rune.SubStat3.HasValue && rune.SubStat3Value.HasValue && filterTypeStats.Contains(rune.SubStat3))
+                runeRelativeScore += MaxStatValues.GetScoreRollValue(rune.SubStat3.Value, rune.SubStat3Value.Value);
+            if (rune.SubStat4.HasValue && rune.SubStat4Value.HasValue && filterTypeStats.Contains(rune.SubStat4))
+                runeRelativeScore += MaxStatValues.GetScoreRollValue(rune.SubStat4.Value, rune.SubStat4Value.Value);
+
+            return runeRelativeScore >= relativeScore;
         }
 
         private bool CheckStars(RuneStars? stars, SWEXRune rune)
