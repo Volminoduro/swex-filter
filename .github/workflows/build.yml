@@ -1,0 +1,32 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger the build
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '9.x'  # Change this to the .NET version your project uses
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build and publish
+      run: |
+        dotnet publish swex-filter/swex-filter.csproj -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true -o ./output/swex-filter
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: swex-filter
+        path: ./output/swex-filter/swex-filter.exe
