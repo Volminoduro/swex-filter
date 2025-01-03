@@ -1,4 +1,4 @@
-﻿using SwexFilter.Models.Enums;
+using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Models
 {
@@ -25,7 +25,7 @@ namespace SwexFilter.Models
         public int? SubStat4Value { get; set; }
         public int Score { get { return CalculateScore(); } }
 
-        public string Monster { get; set; }
+        public string? Monster { get; set; }
 
         private int CalculateScore()
         {

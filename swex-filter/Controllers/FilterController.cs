@@ -1,6 +1,6 @@
-﻿using SwexFilter.Models.Enums;
 using SwexFilter.Data;
 using SwexFilter.Models;
+using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Controllers
 {

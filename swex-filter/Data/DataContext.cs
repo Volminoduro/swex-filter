@@ -1,6 +1,6 @@
-using SwexFilter.Models.Enums;
 using Newtonsoft.Json;
 using SwexFilter.Models;
+using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Data
 {
