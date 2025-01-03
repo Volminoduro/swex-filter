@@ -30,3 +30,12 @@ jobs:
       with:
         name: swex-filter
         path: ./output/swex-filter/swex-filter.exe
+
+    - name: Package artifact as NuGet
+      run: |
+        cd ./output/swex-filter/
+        nuget init .
+        nuget pack swex-filter.csproj -OutputDirectory .
+
+    - name: Publish to GitHub Packages
+      run: dotnet nuget push ./output/swex-filter/*.nupkg -k ${{ secrets.SWEX_FILTER_PACKAGES_TOKEN }} -s https://nuget.pkg.github.com/Volminoduro/index.json
