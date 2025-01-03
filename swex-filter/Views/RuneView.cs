@@ -44,6 +44,21 @@ namespace SwexFilter.Views
             }
         }
 
+        private void DataGridViewRunes_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the column is a DataGridViewComboBoxColumn
+            if (dataGridViewRunes.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
+            {
+                dataGridViewRunes.BeginEdit(true);
+                ComboBox comboBox = dataGridViewRunes.EditingControl as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+            }
+        }
+
+
         private void dataGridViewRunes_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             List<int> indexes = new List<int>();

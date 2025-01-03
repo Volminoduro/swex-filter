@@ -172,6 +172,20 @@ namespace SwexFilter.Views
             }
         }
 
+        private void DataGridViewFilters_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the column is a DataGridViewComboBoxColumn
+            if (dataGridViewFilters.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
+            {
+                dataGridViewFilters.BeginEdit(true);
+                ComboBox comboBox = dataGridViewFilters.EditingControl as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.DroppedDown = true;
+                }
+            }
+        }
+
         private void DataGridViewFilters_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)

@@ -1,4 +1,4 @@
-﻿using SwexFilter.Models.Enums;
+using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Views
 {
@@ -215,6 +215,8 @@ namespace SwexFilter.Views
             this.dataGridViewFilters.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewFilters_CellClick);
             this.dataGridViewFilters.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFilters_CellValueChanged);
             this.dataGridViewFilters.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridViewFilters_CurrentCellDirtyStateChanged);
+            this.dataGridViewFilters.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewFilters_CellEnter);
+
             // 
             // btnAddFilter
             // 
