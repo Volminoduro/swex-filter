@@ -1,4 +1,4 @@
-using SwexFilter.Models.Enums;
+﻿using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Views
 {
@@ -207,6 +207,7 @@ namespace SwexFilter.Views
                     HeaderText = "Max Sub Stat 4 Value"
                 }
             });
+            this.dataGridViewFilters.Dock = DockStyle.Fill;
             this.dataGridViewFilters.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewFilters.Name = "dataGridViewFilters";
             this.dataGridViewFilters.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

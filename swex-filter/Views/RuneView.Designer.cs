@@ -1,4 +1,4 @@
-using SwexFilter.Models.Enums;
+﻿using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Views
 {
@@ -181,6 +181,7 @@ namespace SwexFilter.Views
                 }
 
             });
+            this.dataGridViewRunes.Dock = DockStyle.Fill;
             this.dataGridViewRunes.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewRunes.Name = "dataGridViewRunes";
             this.dataGridViewRunes.Size = new System.Drawing.Size(1000, 368);
