@@ -1,0 +1,69 @@
+name: Build and Release beta-latest
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger the build
+      
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Install GitHub CLI
+      run: |
+        choco install gh
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '9.x'  # Change this to the .NET version your project uses
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build and publish
+      run: |
+        dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true ./swex-filter/swex-filter.csproj -o ./swex-filter
+
+    - name: Delete existing tag if exists
+      run: |
+        gh release delete beta-latest --yes || true
+        git tag -d beta-latest || true
+        git push --delete origin beta-latest || true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create new tag
+      run: |
+        git tag beta-latest
+        git push origin beta-latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Create or Update Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: beta-latest
+        release_name: Beta Build Latest
+        body: |
+          ### Description
+          This is the latest automated beta build from the main branch.
+        draft: false
+        prerelease: true
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./swex-filter/swex-filter.exe
+        asset_name: swex-filter.exe
+        asset_content_type: application/octet-stream
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
