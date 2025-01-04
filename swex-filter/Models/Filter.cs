@@ -1,36 +1,29 @@
-using SwexFilter.Models.Enums;
+﻿using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Models
 {
     public class Filter
     {
         public bool IsActive { get; set; }
-        public string? Name { get; set; }
-        public RuneSet? Set { get; set; }
-        public RuneSlot? Slot { get; set; }
-        public RuneRarity? Rarity { get; set; }
 
-        public RuneStars? Stars { get; set; }
-        public int? MinLevel { get; set; }
-        public int? MaxLevel { get; set; }
-        public RuneTypeStat? MainStat { get; set; }
-        public int? MinMainStatValue { get; set; }
-        public int? MaxMainStatValue { get; set; }
-        public RuneTypeStat? InnateStat { get; set; }
-        public int? MinInnateStatValue { get; set; }
-        public int? MaxInnateStatValue { get; set; }
-        public RuneTypeStat? SubStat1 { get; set; }
-        public int? MinSubStat1Value { get; set; }
-        public int? MaxSubStat1Value { get; set; }
-        public RuneTypeStat? SubStat2 { get; set; }
-        public int? MinSubStat2Value { get; set; }
-        public int? MaxSubStat2Value { get; set; }
-        public RuneTypeStat? SubStat3 { get; set; }
-        public int? MinSubStat3Value { get; set; }
-        public int? MaxSubStat3Value { get; set; }
-        public RuneTypeStat? SubStat4 { get; set; }
-        public int? MinSubStat4Value { get; set; }
-        public int? MaxSubStat4Value { get; set; }
+        public string? Name { get; set; }
+        public int? RelativeScore { get; set; }
+
+        public int? SubPropertiesPresence { get; set; }
+
+        public List<RuneTypeStat> SubPropertiesWanted { get; set; } = [];
+
+        // Useful for first time gemming the rune
+        public bool ExcludeEnchantedRune { get; set; } = true;
+
+        // Useful for first time grinding the rune
+        public bool ExcludeGrindFromScore { get; set; } = true;
+
+        public bool KeepOnlyIfGemAvailable { get; set; } = true;
+
+        public bool KeepOnlyIfGrindAvailable { get; set; } = true;
+
+        // QoL : Rune set filter, rune slot, Main stat
 
     }
 }

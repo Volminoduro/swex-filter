@@ -43,7 +43,7 @@ namespace SwexFilter.Models.Enums
             FieldInfo fi = value.GetType().GetField(value.ToString());
             RuneRarityInfoAttribute[] attributes = (RuneRarityInfoAttribute[])fi.GetCustomAttributes(typeof(RuneRarityInfoAttribute), false);
 
-            return attributes != null && attributes.Length > 0 ? attributes[0] : null;
+            return attributes is not null && attributes.Length > 0 ? attributes[0] : null;
         }
     }
 

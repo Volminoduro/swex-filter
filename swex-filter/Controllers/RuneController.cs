@@ -1,35 +1,15 @@
 ﻿using SwexFilter.Data;
 using SwexFilter.Models;
-using SwexFilter.Utils;
 
 namespace SwexFilter.Controllers
 {
-    public class RuneController
+    public class RuneController(DataContext dataContext)
     {
-        private readonly IDataContext _dataContext;
-        public RuneController(IDataContext dataContext)
-        {
-            _dataContext = dataContext;
-        }
+        private readonly DataContext _dataContext = dataContext;
 
-        public IEnumerable<SWEXRune> GetRunes(int pageNumber, int pageSize)
+        public IList<SWEXRune> GetRunes()
         {
-            return PaginationHelper<SWEXRune>.Paginate(_dataContext.Runes, pageNumber, pageSize);
-        }
-
-        public void AddRune(SWEXRune rune)
-        {
-            _dataContext.AddRune(rune);
-        }
-
-        public void UpdateRune(SWEXRune rune)
-        {
-            _dataContext.UpdateRune(rune);
-        }
-
-        public void DeleteRune(int id)
-        {
-            _dataContext.DeleteRune(id);
+            return _dataContext.Runes;
         }
 
         public void ImportRunes(IEnumerable<SWEXRune> runes)

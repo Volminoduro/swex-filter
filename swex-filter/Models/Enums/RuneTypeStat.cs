@@ -4,6 +4,7 @@ namespace SwexFilter.Models.Enums
 {
     public enum RuneTypeStat
     {
+        // TODO Description et on met le jsonMapping avec = 1
         [RuneTypeStatInfo("HP Flat", "1")]
         HPFlat,
         [RuneTypeStatInfo("HP %", "2")]
@@ -45,7 +46,7 @@ namespace SwexFilter.Models.Enums
             FieldInfo fi = value.GetType().GetField(value.ToString());
             RuneTypeStatInfoAttribute[] attributes = (RuneTypeStatInfoAttribute[])fi.GetCustomAttributes(typeof(RuneTypeStatInfoAttribute), false);
 
-            return attributes != null && attributes.Length > 0 ? attributes[0] : null;
+            return attributes is not null && attributes.Length > 0 ? attributes[0] : null;
         }
     }
 }

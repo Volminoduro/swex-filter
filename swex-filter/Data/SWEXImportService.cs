@@ -1,26 +1,16 @@
-﻿using Newtonsoft.Json;
-using SwexFilter.Models;
+﻿using SwexFilter.Models;
 
-namespace SwexFilter.Data
+namespace SwexFilter.Data;
+public class SWEXImportService(DataContext dataContext)
 {
-    public class SWEXImportService
+    public void ImportRunes(string filePath)
     {
-        private readonly IDataContext _dataContext;
+        var jsonData = File.ReadAllText(filePath);
+        var importedRunes = System.Text.Json.JsonSerializer.Deserialize<List<SWEXRune>>(jsonData);
 
-        public SWEXImportService(IDataContext dataContext)
+        if (importedRunes is not null)
         {
-            _dataContext = dataContext;
-        }
-
-        public void ImportRunes(string filePath)
-        {
-            var jsonData = File.ReadAllText(filePath);
-            var importedRunes = JsonConvert.DeserializeObject<List<SWEXRune>>(jsonData);
-
-            if (importedRunes != null)
-            {
-                _dataContext.ImportRunes(importedRunes);
-            }
+            dataContext.ImportRunes(importedRunes);
         }
     }
 }

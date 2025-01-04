@@ -69,7 +69,7 @@ namespace SwexFilter.Models.Enums
             FieldInfo fi = value.GetType().GetField(value.ToString());
             RuneSetInfoAttribute[] attributes = (RuneSetInfoAttribute[])fi.GetCustomAttributes(typeof(RuneSetInfoAttribute), false);
 
-            return attributes != null && attributes.Length > 0 ? attributes[0] : null;
+            return attributes is not null && attributes.Length > 0 ? attributes[0] : null;
         }
     }
 }

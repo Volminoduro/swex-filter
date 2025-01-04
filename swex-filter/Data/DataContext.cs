@@ -1,18 +1,19 @@
-using Newtonsoft.Json;
 using SwexFilter.Models;
 using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Data
 {
-    public class DataContext : IDataContext
+    public class DataContext
     {
-        private const string FiltersFilePath = "filters.json";
-        private const string RunesFilePath = "runes.json";
-        public IList<SWEXRune> Runes { get; set; } = new List<SWEXRune>();
-        public IList<Filter> Filters { get; set; } = new List<Filter>();
+        private readonly string _FiltersFilePath;
+        private readonly string _RunesFilePath;
+        public IList<SWEXRune> Runes { get; set; } = [];
+        public IList<Filter> Filters { get; set; } = [];
 
-        public DataContext()
+        public DataContext(string FiltersFilePath, string RunesFilePath)
         {
+            _FiltersFilePath = FiltersFilePath;
+            _RunesFilePath = RunesFilePath;
             LoadData();
             AddSampleRunes();
             AddSampleFilters();
@@ -27,7 +28,7 @@ namespace SwexFilter.Data
         public void UpdateRune(SWEXRune rune)
         {
             var existingRune = Runes.FirstOrDefault(r => r.ID == rune.ID);
-            if (existingRune != null)
+            if (existingRune is not null)
             {
                 existingRune.Set = rune.Set;
                 existingRune.Slot = rune.Slot;
@@ -51,7 +52,7 @@ namespace SwexFilter.Data
         public void DeleteRune(int id)
         {
             var rune = Runes.FirstOrDefault(r => r.ID == id);
-            if (rune != null)
+            if (rune is not null)
             {
                 Runes.Remove(rune);
                 SaveData();
@@ -76,30 +77,17 @@ namespace SwexFilter.Data
 
         public void UpdateFilter(Filter filter)
         {
-            var existingFilter = Filters.FirstOrDefault(f => f.Name == filter.Name);
-            if (existingFilter != null)
+            Filter? existingFilter = Filters.FirstOrDefault(f => f.Name == filter.Name);
+            if (existingFilter is not null)
             {
-                existingFilter.Set = filter.Set;
-                existingFilter.Slot = filter.Slot;
-                existingFilter.Rarity = filter.Rarity;
-                existingFilter.MinLevel = filter.MinLevel;
-                existingFilter.MaxLevel = filter.MaxLevel;
-                existingFilter.MainStat = filter.MainStat;
-                existingFilter.MinMainStatValue = filter.MinMainStatValue;
-                existingFilter.MaxMainStatValue = filter.MaxMainStatValue;
-                existingFilter.SubStat1 = filter.SubStat1;
-                existingFilter.MinSubStat1Value = filter.MinSubStat1Value;
-                existingFilter.MaxSubStat1Value = filter.MaxSubStat1Value;
-                existingFilter.SubStat2 = filter.SubStat2;
-                existingFilter.MinSubStat2Value = filter.MinSubStat2Value;
-                existingFilter.MaxSubStat2Value = filter.MaxSubStat2Value;
-                existingFilter.SubStat3 = filter.SubStat3;
-                existingFilter.MinSubStat3Value = filter.MinSubStat3Value;
-                existingFilter.MaxSubStat3Value = filter.MaxSubStat3Value;
-                existingFilter.SubStat4 = filter.SubStat4;
-                existingFilter.MinSubStat4Value = filter.MinSubStat4Value;
-                existingFilter.MaxSubStat4Value = filter.MaxSubStat4Value;
                 existingFilter.IsActive = filter.IsActive;
+                existingFilter.RelativeScore = filter.RelativeScore;
+                existingFilter.SubPropertiesPresence = filter.SubPropertiesPresence;
+                existingFilter.SubPropertiesWanted = filter.SubPropertiesWanted;
+                existingFilter.ExcludeEnchantedRune = filter.ExcludeEnchantedRune;
+                existingFilter.ExcludeGrindFromScore = filter.ExcludeGrindFromScore;
+                existingFilter.KeepOnlyIfGemAvailable = filter.KeepOnlyIfGemAvailable;
+                existingFilter.KeepOnlyIfGrindAvailable = filter.KeepOnlyIfGrindAvailable;
                 SaveData();
             }
         }
@@ -107,7 +95,7 @@ namespace SwexFilter.Data
         public void DeleteFilter(string name)
         {
             var filter = Filters.FirstOrDefault(f => f.Name == name);
-            if (filter != null)
+            if (filter is not null)
             {
                 Filters.Remove(filter);
                 SaveData();
@@ -116,20 +104,20 @@ namespace SwexFilter.Data
 
         private void SaveData()
         {
-            File.WriteAllText(FiltersFilePath, JsonConvert.SerializeObject(Filters, Formatting.Indented));
-            File.WriteAllText(RunesFilePath, JsonConvert.SerializeObject(Runes, Formatting.Indented));
+            File.WriteAllText(_FiltersFilePath, System.Text.Json.JsonSerializer.Serialize(Filters));
+            File.WriteAllText(_RunesFilePath, System.Text.Json.JsonSerializer.Serialize(Runes));
         }
 
         private void LoadData()
         {
-            if (File.Exists(FiltersFilePath))
+            if (File.Exists(_FiltersFilePath))
             {
-                Filters = JsonConvert.DeserializeObject<List<Filter>>(File.ReadAllText(FiltersFilePath)) ?? new List<Filter>();
+                Filters = System.Text.Json.JsonSerializer.Deserialize(< List < Filter >> (File.ReadAllText(_FiltersFilePath)) ?? [];
             }
 
-            if (File.Exists(RunesFilePath))
+            if (File.Exists(_RunesFilePath))
             {
-                Runes = JsonConvert.DeserializeObject<List<SWEXRune>>(File.ReadAllText(RunesFilePath)) ?? new List<SWEXRune>();
+                Runes = System.Text.Json.JsonSerializer.Deserialize(< List < SWEXRune >> (File.ReadAllText(_RunesFilePath)) ?? [];
             }
         }
 
@@ -207,25 +195,18 @@ namespace SwexFilter.Data
             Filters.Add(new Filter
             {
                 Name = "Legendary Violent Runes",
-                Set = RuneSet.Violent,
-                Rarity = RuneRarity.Legendary,
                 IsActive = true
             });
 
             Filters.Add(new Filter
             {
                 Name = "High SPD Runes",
-                MainStat = RuneTypeStat.SPD,
-                MinMainStatValue = 40,
                 IsActive = false
             });
 
             Filters.Add(new Filter
             {
                 Name = "Swift Runes with CRI Rate",
-                Set = RuneSet.Swift,
-                SubStat1 = RuneTypeStat.CRIRate,
-                MinSubStat1Value = 10,
                 IsActive = true
             });
 
