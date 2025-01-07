@@ -2,22 +2,21 @@ using SwexFilter.Controllers;
 using SwexFilter.Data;
 using SwexFilter.Views;
 
-namespace SwexFilter
+namespace SwexFilter;
+
+internal static class Program
 {
-    static class Program
+    [STAThread]
+    private static void Main()
     {
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
 
-            DataContext dataContext = new("filters.json", "runes.json");
+        DataContext dataContext = new("filters.json", "runes.json");
 
-            RuneController runeController = new(dataContext);
-            FilterController filterController = new(dataContext);
+        RuneController runeController = new(dataContext);
+        FilterController filterController = new(dataContext);
 
-            Application.Run(new MainForm(filterController, runeController, dataContext));
-        }
+        Application.Run(new MainForm(filterController, runeController, dataContext));
     }
 }

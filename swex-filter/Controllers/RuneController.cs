@@ -1,20 +1,19 @@
 ﻿using SwexFilter.Data;
 using SwexFilter.Models;
 
-namespace SwexFilter.Controllers
+namespace SwexFilter.Controllers;
+
+public class RuneController(DataContext dataContext)
 {
-    public class RuneController(DataContext dataContext)
+    private readonly DataContext _dataContext = dataContext;
+
+    public IList<SwexRune> GetRunes()
     {
-        private readonly DataContext _dataContext = dataContext;
+        return _dataContext.Runes;
+    }
 
-        public IList<SWEXRune> GetRunes()
-        {
-            return _dataContext.Runes;
-        }
-
-        public void ImportRunes(IEnumerable<SWEXRune> runes)
-        {
-            _dataContext.ImportRunes(runes);
-        }
+    public void ImportRunes(IEnumerable<SwexRune> runes)
+    {
+        _dataContext.ImportRunes(runes);
     }
 }

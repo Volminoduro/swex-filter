@@ -1,52 +1,33 @@
-﻿using System.Reflection;
+﻿namespace SwexFilter.Models.Enums;
 
-namespace SwexFilter.Models.Enums
+public enum RuneTypeStat
 {
-    public enum RuneTypeStat
+    // TODO Description et on met le jsonMapping avec = 1
+    [RuneTypeStatInfo("HP Flat", "1")] HpFlat,
+    [RuneTypeStatInfo("HP %", "2")] HpPercentage,
+    [RuneTypeStatInfo("ATK Flat", "3")] AtkFlat,
+    [RuneTypeStatInfo("ATK %", "4")] AtkPercentage,
+    [RuneTypeStatInfo("DEF Flat", "5")] DefFlat,
+    [RuneTypeStatInfo("DEF %", "6")] DefPercentage,
+    [RuneTypeStatInfo("SPD", "8")] Spd,
+    [RuneTypeStatInfo("CRI Rate", "9")] CriRate,
+    [RuneTypeStatInfo("CRI DMG", "10")] CriDmg,
+    [RuneTypeStatInfo("Resistance", "11")] Resistance,
+    [RuneTypeStatInfo("Accuracy", "12")] Accuracy
+}
+
+[AttributeUsage(AttributeTargets.Field)]
+public class RuneTypeStatInfoAttribute(string displayName, string jsonMapping) : Attribute
+{
+    public string DisplayName { get; } = displayName;
+    public string JsonMapping { get; } = jsonMapping;
+
+    public static RuneTypeStatInfoAttribute? GetInfo(Enum value)
     {
-        // TODO Description et on met le jsonMapping avec = 1
-        [RuneTypeStatInfo("HP Flat", "1")]
-        HPFlat,
-        [RuneTypeStatInfo("HP %", "2")]
-        HPPercentage,
-        [RuneTypeStatInfo("ATK Flat", "3")]
-        ATKFlat,
-        [RuneTypeStatInfo("ATK %", "4")]
-        ATKPercentage,
-        [RuneTypeStatInfo("DEF Flat", "5")]
-        DEFFlat,
-        [RuneTypeStatInfo("DEF %", "6")]
-        DEFPercentage,
-        [RuneTypeStatInfo("SPD", "8")]
-        SPD,
-        [RuneTypeStatInfo("CRI Rate", "9")]
-        CRIRate,
-        [RuneTypeStatInfo("CRI DMG", "10")]
-        CRIDMG,
-        [RuneTypeStatInfo("Resistance", "11")]
-        Resistance,
-        [RuneTypeStatInfo("Accuracy", "12")]
-        Accuracy
-    }
+        var fi = value.GetType().GetField(value.ToString());
+        var attributes =
+            (RuneTypeStatInfoAttribute?[])fi.GetCustomAttributes(typeof(RuneTypeStatInfoAttribute), false);
 
-    [AttributeUsage(AttributeTargets.Field)]
-    public class RuneTypeStatInfoAttribute : Attribute
-    {
-        public string DisplayName { get; }
-        public string JsonMapping { get; }
-
-        public RuneTypeStatInfoAttribute(string displayName, string jsonMapping)
-        {
-            DisplayName = displayName;
-            JsonMapping = jsonMapping;
-        }
-
-        public static RuneTypeStatInfoAttribute GetInfo(Enum value)
-        {
-            FieldInfo fi = value.GetType().GetField(value.ToString());
-            RuneTypeStatInfoAttribute[] attributes = (RuneTypeStatInfoAttribute[])fi.GetCustomAttributes(typeof(RuneTypeStatInfoAttribute), false);
-
-            return attributes is not null && attributes.Length > 0 ? attributes[0] : null;
-        }
+        return attributes.Length > 0 ? attributes[0] : null;
     }
 }

@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace SwexFilter.Tests.Controllers;
 
-namespace SwexFilter.Tests.Controllers
+public class FilterControllerTests
 {
-    public class FilterControllerTests
+    [Fact]
+    public void ApplyFiltersToRune()
     {
-
-        [Fact]
-        public void ApplyFiltersToRune()
-        {
-            Assert.Fail("todo");
-        }
+        Assert.Fail("todo");
     }
 }
