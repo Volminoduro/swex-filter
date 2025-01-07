@@ -1,11 +1,15 @@
-﻿using SwexFilter.Models.Enums;
+﻿using System.Text.Json.Serialization;
+using SwexFilter.Models.Enums;
 
 namespace SwexFilter.Models;
 
 public class SwexRune
 {
     public List<Filter> FiltersPassed { get; set; } = [];
-    public int Id { get; set; }
+
+    [JsonPropertyName("rune_id")] public long Id { get; set; }
+
+    [JsonPropertyName("set_id")] public int SetId { get; set; }
     public RuneSet Set { get; set; }
     public RuneSlot Slot { get; set; }
     public RuneStars Stars { get; set; }

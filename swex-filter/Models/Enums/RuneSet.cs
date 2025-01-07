@@ -2,36 +2,35 @@
 
 public enum RuneSet
 {
-    [RuneSetInfo("Energy", "1")] Energy,
-    [RuneSetInfo("Guard", "2")] Guard,
-    [RuneSetInfo("Swift", "3")] Swift,
-    [RuneSetInfo("Blade", "4")] Blade,
-    [RuneSetInfo("Rage", "5")] Rage,
-    [RuneSetInfo("Fatal", "8")] Fatal,
-    [RuneSetInfo("Despair", "10")] Despair,
-    [RuneSetInfo("Vampire", "11")] Vampire,
-    [RuneSetInfo("Violent", "13")] Violent,
-    [RuneSetInfo("Focus", "6")] Focus,
-    [RuneSetInfo("Endure", "7")] Endure,
-    [RuneSetInfo("Will", "15")] Will,
-    [RuneSetInfo("Nemesis", "14")] Nemesis,
-    [RuneSetInfo("Shield", "16")] Shield,
-    [RuneSetInfo("Revenge", "17")] Revenge,
-    [RuneSetInfo("Destroy", "18")] Destroy,
-    [RuneSetInfo("Fight", "19")] Fight,
-    [RuneSetInfo("Determination", "20")] Determination,
-    [RuneSetInfo("Enhance", "21")] Enhance,
-    [RuneSetInfo("Accuracy", "22")] Accuracy,
-    [RuneSetInfo("Tolerance", "23")] Tolerance,
-    [RuneSetInfo("Seal", "24")] Seal,
-    [RuneSetInfo("Intangible", "25")] Intangible
+    [RuneSetInfo("Energy")] Energy = 1,
+    [RuneSetInfo("Guard")] Guard = 2,
+    [RuneSetInfo("Swift")] Swift = 3,
+    [RuneSetInfo("Blade")] Blade = 4,
+    [RuneSetInfo("Rage")] Rage = 5,
+    [RuneSetInfo("Fatal")] Fatal = 8,
+    [RuneSetInfo("Despair")] Despair = 10,
+    [RuneSetInfo("Vampire")] Vampire = 11,
+    [RuneSetInfo("Violent")] Violent = 13,
+    [RuneSetInfo("Focus")] Focus = 6,
+    [RuneSetInfo("Endure")] Endure = 7,
+    [RuneSetInfo("Will")] Will = 15,
+    [RuneSetInfo("Nemesis")] Nemesis = 14,
+    [RuneSetInfo("Shield")] Shield = 16,
+    [RuneSetInfo("Revenge")] Revenge = 17,
+    [RuneSetInfo("Destroy")] Destroy = 18,
+    [RuneSetInfo("Fight")] Fight = 19,
+    [RuneSetInfo("Determination")] Determination = 20,
+    [RuneSetInfo("Enhance")] Enhance = 21,
+    [RuneSetInfo("Accuracy")] Accuracy = 22,
+    [RuneSetInfo("Tolerance")] Tolerance = 23,
+    [RuneSetInfo("Seal")] Seal = 24,
+    [RuneSetInfo("Intangible")] Intangible = 25
 }
 
 [AttributeUsage(AttributeTargets.Field)]
-public class RuneSetInfoAttribute(string displayName, string jsonMapping) : Attribute
+public class RuneSetInfoAttribute(string displayName) : Attribute
 {
     public string DisplayName { get; } = displayName;
-    public string JsonMapping { get; } = jsonMapping;
 
     public static RuneSetInfoAttribute? GetInfo(Enum value)
     {

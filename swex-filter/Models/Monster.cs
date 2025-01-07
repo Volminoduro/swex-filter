@@ -1,0 +1,10 @@
+﻿using System.Text.Json.Serialization;
+
+namespace SwexFilter.Models;
+
+public record Monster
+{
+    [JsonPropertyName("unit_master_id")] public long id { get; }
+
+    public List<SwexRune> runes { get; set; }
+}
