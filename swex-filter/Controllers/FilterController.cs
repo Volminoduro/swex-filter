@@ -43,21 +43,26 @@ public class FilterController(DataContext dataContext)
     {
         if (filter.RelativeScore == null) return true;
         double runeRelativeScore = 0;
-        if (rune is { InnateStat: not null, InnateStatValue: not null } &&
-            filter.SubPropertiesWanted.Contains(rune.InnateStat.Value))
-            runeRelativeScore += MaxStatValues.GetScoreRollValue(rune.InnateStat.Value, rune.InnateStatValue.Value);
-        if (rune is { SubStat1: not null, SubStat1Value: not null } &&
-            filter.SubPropertiesWanted.Contains(rune.SubStat1.Value))
-            runeRelativeScore += MaxStatValues.GetScoreRollValue(rune.SubStat1.Value, rune.SubStat1Value.Value);
-        if (rune is { SubStat2: not null, SubStat2Value: not null } &&
-            filter.SubPropertiesWanted.Contains(rune.SubStat2.Value))
-            runeRelativeScore += MaxStatValues.GetScoreRollValue(rune.SubStat2.Value, rune.SubStat2Value.Value);
-        if (rune is { SubStat3: not null, SubStat3Value: not null } &&
-            filter.SubPropertiesWanted.Contains(rune.SubStat3.Value))
-            runeRelativeScore += MaxStatValues.GetScoreRollValue(rune.SubStat3.Value, rune.SubStat3Value.Value);
-        if (rune is { SubStat4: not null, SubStat4Value: not null } &&
-            filter.SubPropertiesWanted.Contains(rune.SubStat4.Value))
-            runeRelativeScore += MaxStatValues.GetScoreRollValue(rune.SubStat4.Value, rune.SubStat4Value.Value);
+        if (rune.InnateStat is { RuneTypeStat: not null, Value: not null } &&
+            filter.SubPropertiesWanted.Contains(rune.InnateStat.RuneTypeStat.Value))
+            runeRelativeScore +=
+                MaxStatValues.GetScoreRollValue(rune.InnateStat.RuneTypeStat.Value, rune.InnateStat.Value.Value);
+        if (rune.SubStat1 is { RuneTypeStat: not null, Value: not null } &&
+            filter.SubPropertiesWanted.Contains(rune.SubStat1.RuneTypeStat.Value))
+            runeRelativeScore +=
+                MaxStatValues.GetScoreRollValue(rune.SubStat1.RuneTypeStat.Value, rune.SubStat1.Value.Value);
+        if (rune.SubStat2 is { RuneTypeStat: not null, Value: not null } &&
+            filter.SubPropertiesWanted.Contains(rune.SubStat2.RuneTypeStat.Value))
+            runeRelativeScore +=
+                MaxStatValues.GetScoreRollValue(rune.SubStat2.RuneTypeStat.Value, rune.SubStat2.Value.Value);
+        if (rune.SubStat3 is { RuneTypeStat: not null, Value: not null } &&
+            filter.SubPropertiesWanted.Contains(rune.SubStat3.RuneTypeStat.Value))
+            runeRelativeScore +=
+                MaxStatValues.GetScoreRollValue(rune.SubStat3.RuneTypeStat.Value, rune.SubStat3.Value.Value);
+        if (rune.SubStat4 is { RuneTypeStat: not null, Value: not null } &&
+            filter.SubPropertiesWanted.Contains(rune.SubStat4.RuneTypeStat.Value))
+            runeRelativeScore +=
+                MaxStatValues.GetScoreRollValue(rune.SubStat4.RuneTypeStat.Value, rune.SubStat4.Value.Value);
 
         return runeRelativeScore >= filter.RelativeScore;
     }

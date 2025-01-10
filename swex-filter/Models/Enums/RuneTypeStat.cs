@@ -2,25 +2,23 @@
 
 public enum RuneTypeStat
 {
-    // TODO Description et on met le jsonMapping avec = 1
-    [RuneTypeStatInfo("HP Flat", "1")] HpFlat,
-    [RuneTypeStatInfo("HP %", "2")] HpPercentage,
-    [RuneTypeStatInfo("ATK Flat", "3")] AtkFlat,
-    [RuneTypeStatInfo("ATK %", "4")] AtkPercentage,
-    [RuneTypeStatInfo("DEF Flat", "5")] DefFlat,
-    [RuneTypeStatInfo("DEF %", "6")] DefPercentage,
-    [RuneTypeStatInfo("SPD", "8")] Spd,
-    [RuneTypeStatInfo("CRI Rate", "9")] CriRate,
-    [RuneTypeStatInfo("CRI DMG", "10")] CriDmg,
-    [RuneTypeStatInfo("Resistance", "11")] Resistance,
-    [RuneTypeStatInfo("Accuracy", "12")] Accuracy
+    [RuneTypeStatInfo("HP Flat")] HpFlat = 1,
+    [RuneTypeStatInfo("HP %")] HpPercentage = 2,
+    [RuneTypeStatInfo("ATK Flat")] AtkFlat = 3,
+    [RuneTypeStatInfo("ATK %")] AtkPercentage = 4,
+    [RuneTypeStatInfo("DEF Flat")] DefFlat = 5,
+    [RuneTypeStatInfo("DEF %")] DefPercentage = 6,
+    [RuneTypeStatInfo("SPD")] Spd = 8,
+    [RuneTypeStatInfo("CRI Rate")] CriRate = 9,
+    [RuneTypeStatInfo("CRI DMG")] CriDmg = 10,
+    [RuneTypeStatInfo("Resistance")] Resistance = 11,
+    [RuneTypeStatInfo("Accuracy")] Accuracy = 12
 }
 
 [AttributeUsage(AttributeTargets.Field)]
-public class RuneTypeStatInfoAttribute(string displayName, string jsonMapping) : Attribute
+public class RuneTypeStatInfoAttribute(string displayName) : Attribute
 {
     public string DisplayName { get; } = displayName;
-    public string JsonMapping { get; } = jsonMapping;
 
     public static RuneTypeStatInfoAttribute? GetInfo(Enum value)
     {

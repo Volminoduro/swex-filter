@@ -38,14 +38,12 @@ public class DataContext
         existingRune.Level = rune.Level;
         existingRune.MainStat = rune.MainStat;
         existingRune.MainStatValue = rune.MainStatValue;
+        existingRune.InnateStat = rune.InnateStat;
         existingRune.SubStat1 = rune.SubStat1;
-        existingRune.SubStat1Value = rune.SubStat1Value;
         existingRune.SubStat2 = rune.SubStat2;
-        existingRune.SubStat2Value = rune.SubStat2Value;
         existingRune.SubStat3 = rune.SubStat3;
-        existingRune.SubStat3Value = rune.SubStat3Value;
         existingRune.SubStat4 = rune.SubStat4;
-        existingRune.SubStat4Value = rune.SubStat4Value;
+        existingRune.Monster = rune.Monster;
         SaveData();
     }
 
@@ -122,54 +120,10 @@ public class DataContext
             Level = 15,
             MainStat = RuneTypeStat.AtkPercentage,
             MainStatValue = 63,
-            SubStat1 = RuneTypeStat.HpPercentage,
-            SubStat1Value = 20,
-            SubStat2 = RuneTypeStat.CriRate,
-            SubStat2Value = 15,
-            SubStat3 = RuneTypeStat.DefPercentage,
-            SubStat3Value = 12,
-            SubStat4 = RuneTypeStat.Spd,
-            SubStat4Value = 8
-        });
-
-        Runes.Add(new SwexRune
-        {
-            Id = 2,
-            Set = RuneSet.Will,
-            Slot = RuneSlot.Slot4,
-            Stars = RuneStars.Five,
-            Rarity = RuneRarity.Hero,
-            Level = 12,
-            MainStat = RuneTypeStat.CriRate,
-            MainStatValue = 80,
-            SubStat1 = RuneTypeStat.AtkPercentage,
-            SubStat1Value = 15,
-            SubStat2 = RuneTypeStat.HpPercentage,
-            SubStat2Value = 10,
-            SubStat3 = RuneTypeStat.DefPercentage,
-            SubStat3Value = 9,
-            SubStat4 = RuneTypeStat.Accuracy,
-            SubStat4Value = 10
-        });
-
-        Runes.Add(new SwexRune
-        {
-            Id = 3,
-            Set = RuneSet.Swift,
-            Slot = RuneSlot.Slot2,
-            Stars = RuneStars.Six,
-            Rarity = RuneRarity.Legendary,
-            Level = 15,
-            MainStat = RuneTypeStat.Spd,
-            MainStatValue = 42,
-            SubStat1 = RuneTypeStat.AtkPercentage,
-            SubStat1Value = 15,
-            SubStat2 = RuneTypeStat.CriRate,
-            SubStat2Value = 12,
-            SubStat3 = RuneTypeStat.HpPercentage,
-            SubStat3Value = 8,
-            SubStat4 = RuneTypeStat.DefFlat,
-            SubStat4Value = 10
+            SubStat1 = new RuneSubProperty { RuneTypeStat = RuneTypeStat.HpPercentage, Value = 20, GrindAmount = 5 },
+            SubStat2 = new RuneSubProperty { RuneTypeStat = RuneTypeStat.CriRate, Value = 5 },
+            SubStat3 = new RuneSubProperty
+                { RuneTypeStat = RuneTypeStat.DefPercentage, Value = 5, GrindAmount = 5, IsEnchanted = true }
         });
 
         SaveData();

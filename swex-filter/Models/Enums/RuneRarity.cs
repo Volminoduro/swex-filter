@@ -2,29 +2,23 @@
 
 public enum RuneRarity
 {
-    [RuneRarityInfo("Common", "1")] Common,
-    [RuneRarityInfo("Magic", "2")] Magic,
-    [RuneRarityInfo("Rare", "3")] Rare,
-    [RuneRarityInfo("Hero", "4")] Hero,
-    [RuneRarityInfo("Legendary", "5")] Legendary,
+    [RuneRarityInfo("Common")] Common = 1,
+    [RuneRarityInfo("Magic")] Magic = 2,
+    [RuneRarityInfo("Rare")] Rare = 3,
+    [RuneRarityInfo("Hero")] Hero = 4,
+    [RuneRarityInfo("Legendary")] Legendary = 5,
 
-    [RuneRarityInfo("Ancient Common", "11")]
-    AncientCommon,
-
-    [RuneRarityInfo("Ancient Magic", "12")]
-    AncientMagic,
-    [RuneRarityInfo("Ancient Rare", "13")] AncientRare,
-    [RuneRarityInfo("Ancient Hero", "14")] AncientHero,
-
-    [RuneRarityInfo("Ancient Legendary", "15")]
-    AncientLegendary
+    [RuneRarityInfo("Ancient Common")] AncientCommon = 11,
+    [RuneRarityInfo("Ancient Magic")] AncientMagic = 12,
+    [RuneRarityInfo("Ancient Rare")] AncientRare = 13,
+    [RuneRarityInfo("Ancient Hero")] AncientHero = 14,
+    [RuneRarityInfo("Ancient Legendary")] AncientLegendary = 15
 }
 
 [AttributeUsage(AttributeTargets.Field)]
-public class RuneRarityInfoAttribute(string displayName, string jsonMapping) : Attribute
+public class RuneRarityInfoAttribute(string displayName) : Attribute
 {
     public string DisplayName { get; } = displayName;
-    public string JsonMapping { get; } = jsonMapping;
 
     public static RuneRarityInfoAttribute? GetInfo(Enum value)
     {

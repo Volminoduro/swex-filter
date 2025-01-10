@@ -27,20 +27,11 @@ public class SwexRuneTests
     {
         SwexRune testRune = new()
         {
-            InnateStat = InnateStat,
-            InnateStatValue = InnateStatValue,
-
-            SubStat1 = SubStat1,
-            SubStat1Value = SubStatValue1,
-
-            SubStat2 = SubStat2,
-            SubStat2Value = SubStatValue2,
-
-            SubStat3 = SubStat3,
-            SubStat3Value = SubStatValue3,
-
-            SubStat4 = SubStat4,
-            SubStat4Value = SubStatValue4
+            InnateStat = new RuneSubProperty { RuneTypeStat = InnateStat, Value = InnateStatValue },
+            SubStat1 = new RuneSubProperty { RuneTypeStat = SubStat1, Value = SubStatValue1 },
+            SubStat2 = new RuneSubProperty { RuneTypeStat = SubStat2, Value = SubStatValue2 },
+            SubStat3 = new RuneSubProperty { RuneTypeStat = SubStat3, Value = SubStatValue3 },
+            SubStat4 = new RuneSubProperty { RuneTypeStat = SubStat4, Value = SubStatValue4 }
         };
 
         testRune.Score.Should().Be(excepted);
