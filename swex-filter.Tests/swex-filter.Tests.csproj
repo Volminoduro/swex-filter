@@ -29,7 +29,10 @@
             <Link>Resources\mapping.json</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\sampleTestFile.json">
+        <None Update="Resources\SWEXImportServiceTests.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\FilterControllerTests.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
